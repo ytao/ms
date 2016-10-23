@@ -1,0 +1,40 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]
+then
+	startx
+	exit 0
+else
+	case $1 in
+		"a")
+			mstr="awesome"
+			;;
+		"c")
+			mstr="cinnamon-session"
+			;;
+		"m")
+			mstr="mate-session"
+			;;
+		"o")
+			mstr="openbox"
+			;;
+		"x")
+			# mstr="startxfce4"
+			mstr="xmonad-session"
+			;;
+		"f")
+			mstr="startfluxbox"
+			;;
+		"l")
+			mstr="lxde"
+			;;
+		"i")
+			mstr="i3"
+			;;
+		*)
+			mstr="awesome"
+			exit 0
+	esac
+fi
+eval "sed -i '\$s/^.*$/exec "${mstr}"/' ~/.xinitrc"
+startx
